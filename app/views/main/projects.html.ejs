@@ -1,0 +1,53 @@
+<div id="header">
+  <h2 id="headerText">MagusXIX</h2>
+</div>
+
+<div id="can">
+
+  <div id="navCan">
+
+    <div id="home" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/home.png"></img>
+      </div>
+      <p>Home</p>
+    </div>
+    <div id="projects" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/cog.png"></img>
+      </div>
+      <p>Projects</p>
+    </div>
+    <div id="playground" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/tools.png"></img>
+      </div>
+      <p>Playground</p>
+    </div>
+
+  </div> <!-- end of navcan -->
+
+  <div id="contentCan">
+
+    <div class="wideBar"></div>
+
+    <div class="contentWide">
+      <a href="/sectormap" target="_blank">
+        <img class="projectImage" src="./img/earthlike286.png"></img>
+      </a>
+      <h3>Galaxy Generation</h3>
+      <p>My galaxy generator was originally intended to be a browser based, massively multiplayer grand strategy game.  I got as far as creating the map-making engine before I had to shelve the project due to other pressing concerns.  As it stands, this is capable of procedurally generating a virtual Milky Way galaxy, one sector of space at a time.</p>
+      <p>Everything is generated to-scale.  This means that planets are appropriately sized to the nearest meter, planets revolve around their respective stars at astronomical distances, and solar systems are light years apart.  In addition, all of the planets actually do revolve and rotate in real time.  Light only comes from stars, meaning that everything has a proper day/night cycle.</p>
+      <p>The program is built on node.js and uses MongoDB.  Everything is rendered in <a href="http://www.khronos.org/webgl/">WebGL</a>.  Originally I tried to create my own rendering engine, but then I heard about an open-source WebGL rendering engine called <a href="http://threejs.org/">three.js</a>.  I quickly learned how to use three, and ended up having to rewrite the entire thing from scratch.  Ultimately it did save me time in the end, and I highly recommend three.js to anyone looking to get into WebGL.</p>
+      <p>To navigate around the map, you can use the arrow keys to pan (or right click and drag) and your mouse wheel to zoom.  You can zoom all the way in to a planet, and all the way out until you can see many solar systems at once.  In this version, there is only one generated sector, but the code can generate an entire galaxy.  I have also open-sourced the code on <a href="https://github.com/magusxix">github</a>.</p>
+      <a href="/sectormap" target="_blank">Click here to play around with it.</a>
+      <div class="clear"></div>
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+
+</div>
+
+<%- scriptLink('/js/controllers/main.js', {type: 'text/javascript'}) %>
