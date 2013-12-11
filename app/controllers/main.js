@@ -23,8 +23,8 @@ var Main = function () {
 
   this.index = function (req, resp, params) {
     this.respond({params: params}, {
-      format: 'html'
-    , template: 'app/views/main/index'
+        format: 'html'
+      , template: 'app/views/main/index'
     });
   };
 
@@ -33,21 +33,28 @@ var Main = function () {
         format: 'html'
       , template: 'app/views/main/projects'
     })
-  }
+  };
 
   this.playground = function (req, resp, params) {
     this.respond({params: params}, {
         format: 'html'
       , template: 'app/views/main/playground'
     })
-  }
+  };
 
   this.sectorMap = function (req, resp, params) {
     this.respond({params: params}, {
-      format: 'html'
-    , template: 'app/views/main/sectormap'
+        format: 'html'
+      , template: 'app/views/main/sectormap'
     });
   };
+
+  this.chat = function (req, resp, params) {
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat'
+    })
+  }
 
   this.bundle = function (req, resp, params) {
     js({entry: path.join(__dirname,'/../../public/js/controllers/sectorMap.js'), debug: true}, function(err, src){
@@ -57,7 +64,16 @@ var Main = function () {
       resp.send(src, 200, {'Content-Type': 'text/javascript'});
     });
     //resp.send('alert("done");', 200, {'Content-Type': 'text/javascript'})
-  }
+  };
+
+  this.chatBundle = function (req, resp, params) {
+    js({entry: path.join(__dirname,'/../../public/js/controllers/chat.js'), debug: true}, function (err, src) {
+      if (err) {
+        geddy.log.error("FRONT END ERROR!! OH NOAZ!" + err.message);
+      }
+      resp.send(src, 200, {'Content-Type': 'text/javascript'});
+    });
+  };
 
 };
 

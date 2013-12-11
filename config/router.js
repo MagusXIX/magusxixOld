@@ -23,7 +23,9 @@ router.get('/').to('Main.index');
 router.get('/projects').to('Main.projects');
 router.get('/playground').to('Main.playground');
 router.get('/sectormap').to('Main.sectorMap');
+router.get('/chat').to('Main.chat');
 router.get('/bundle.js').to('Main.bundle');
+router.get('/chatBundle.js').to('Main.chatBundle');
 
 router.get('/sector/generate').to('Api.generateSector');
 router.get('/sector/load/:x/:y').to('Api.loadSector');

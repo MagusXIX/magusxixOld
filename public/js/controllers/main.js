@@ -1,3 +1,8 @@
+/*var geddy;
+window.geddy = geddy || {};
+geddy.io = require('socket.io-client');
+geddy.socket = geddy.io.connect('/');*/
+
 $("#headerText").click(function () {
   window.location.replace("/");
 })
@@ -16,4 +21,12 @@ $("#playground").click(function () {
 
 $("#contact").click(function () {
   window.location.replace("/contact");
+})
+
+$('#chatSignUp').click(function () {
+
+})
+
+$('#chatLogIn').click(function () {
+  window.location.replace("/chat");
 })
