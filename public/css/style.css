@@ -183,3 +183,66 @@ body {
   margin-right: 200px;
   border-radius: 4px;
 }
+
+#mainChatCan {
+  width: 70%;
+  height: 90%;
+  background-color: white;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  bottom: 0;
+}
+
+#messageFormCan {
+  width: 98%;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  margin: 10px;
+}
+
+#messageFormInput {
+  width: 93%;
+  height: 20px;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid black;
+}
+
+#messageFormSubmit {
+  width: 6%;
+  height: 20px;
+  float: right;
+  background: none;
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  vertical-align: middle;
+}
+
+#sentMessages {
+  height: 90%;
+  overflow: auto;
+}
+
+.sentMessage {
+  border-bottom: 1px solid black;
+}
+
+.sentMessageText {
+  margin: 0px;
+  max-width: 100%;
+}
+
+#userListCan {
+  width: 22%;
+  height: 90%;
+  background-color: white;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 40px;
+  bottom: 0;
+}
