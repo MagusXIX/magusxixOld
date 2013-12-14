@@ -24,6 +24,9 @@ router.get('/projects').to('Main.projects');
 router.get('/playground').to('Main.playground');
 router.get('/sectormap').to('Main.sectorMap');
 router.get('/chat').to('Main.chat');
+router.get('/chat_sign_up').to('Main.chatSignUp');
+router.get('/sign_up_attempt').to('Main.signUpAttempt');
+
 router.get('/bundle.js').to('Main.bundle');
 router.get('/chatBundle.js').to('Main.chatBundle');
 

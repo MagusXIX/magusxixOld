@@ -190,6 +190,46 @@ body {
   border-radius: 4px;
 }
 
+#signUpFormCan {
+
+}
+
+#signUpUserNameCan {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signUpDesiredPasswordCan {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signUpConfirmPasswordCan {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signUpSubmitCan {
+  width: 230px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#signUpSubmit {
+  width: 60px;
+  height: 26px;
+  background: none;
+  border: 1px solid black;
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
 #mainChatCan {
   width: 70%;
   background-color: white;
@@ -225,6 +265,7 @@ body {
   margin: 0px;
   padding: 0px;
   vertical-align: middle;
+  cursor: pointer;
 }
 
 #sentMessages {

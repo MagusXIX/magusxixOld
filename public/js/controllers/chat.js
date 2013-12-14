@@ -10,7 +10,6 @@ $('body').css("width", "100%");
 $('#container').css("height", "100%");
 $('#container').css("width", "100%");
 
-
 //MESSAGE HANDLERS
 var messageCount = 0;
 
@@ -18,10 +17,13 @@ $('#messageFormInput').keypress(function (event) {
 
   if (event.which == 13) {
 
-    event.preventDefault();
-    geddy.socket.emit('sentMessage', $('#messageFormInput').val());
+    var inputText = encodeURI($('#messageFormInput').val());
 
-    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + "<p class='sentMessageText'>" + $('#messageFormInput').val() + "</p></div>");
+    event.preventDefault();
+
+    geddy.socket.emit('sentMessage', inputText);
+
+    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><p class='sentMessageText'>" + inputText + "</p></div>");
     $('#messageFormInput').val('');
 
     messageCount++;
@@ -40,10 +42,12 @@ $('#messageFormInput').keypress(function (event) {
 
 $('#messageFormSubmit').click(function (event) {
 
-  event.preventDefault();
-  geddy.socket.emit('sentMessage', $('#messageFormInput').val());
+  var inputText = encodeURI($('#messageFormInput').val());
 
-  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + $('#messageFormInput').val() + "</div>");
+  event.preventDefault();
+  geddy.socket.emit('sentMessage', inputText);
+
+  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + "<p class='sentMessageText'>" + inputText + "</p></div>");
   $('#messageFormInput').val('');
   $('#messageFormInput').focus();
 
@@ -56,8 +60,7 @@ $('#messageFormSubmit').click(function (event) {
 })
 
 geddy.socket.on('receivedMessage', function (data) {
-  console.log(data);
-  $('#sentMessages').append("<div class='sentMessage'>" + data + "</div>");
+  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + "<p class='sentMessageText'>" + data + "</p></div>");
 })
 
 
@@ -98,7 +101,7 @@ $('#diceFormSubmit').click(function (event) {
   var displayResults = function (rollResults) {
 
     var resultsMessage = '';
-    resultsMessage = 'You rolled ' + (rollResults.length + 1) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
+    resultsMessage = 'You rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
 
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
@@ -110,7 +113,6 @@ $('#diceFormSubmit').click(function (event) {
 });
 
 geddy.socket.on('diceRollEmit', function (data) {
-  console.log(data);
   $('#sentMessages').append("<div class='sentMessage'>" + data + "</div>");
 });
 

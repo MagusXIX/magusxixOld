@@ -50,11 +50,95 @@ var Main = function () {
   };
 
   this.chat = function (req, resp, params) {
-    this.respond({params: params}, {
+    this.respond({}, {
         format: 'html'
       , template: 'app/views/main/chat'
     })
   }
+
+  this.chatSignUp = function (req, resp, params) {
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat_sign_up'
+    });
+  };
+
+  this.signUpNameTaken = function (req, resp, params) {
+    console.log(params);
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat_sign_up'
+    })
+  }
+
+  this.signUpMismatch = function (req, resp, params) {
+    console.log(params);
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat_sign_up'
+    });
+  };
+
+  this.signUpAttempt = function (req, resp, params) {
+    var self = this;
+    
+    geddy.model.User.all({}, function (err, users) {
+
+      if (err) {
+        geddy.log.error(err);
+      } else if (users) {
+        
+        if (users.length > 0) {
+
+          for (var i in users) {
+            geddy.log.notice('Browsing users');
+
+            if (users[i].name == params.name) {
+              geddy.log.error('Username is Taken');
+
+              params.nameTaken = "true";
+
+              self.signUpNameTaken(req, resp, params);
+
+            } else if (params.password != params.passwordConfirm) {
+              geddy.log.error('Passwords do not match! Line 104');
+
+              params.passwordMismatch = "true";
+              console.log(params);
+
+              self.signUpMismatch(req, resp, params);
+
+            } else {
+              geddy.log.notice('Sign Up Conditions Met');
+
+              geddy.model.User.generate(params.name, params.password);
+              self.chat(req, resp, params);
+            }
+
+          }
+
+        } else {
+
+          if (params.password != params.passwordConfirm) {
+            
+            geddy.log.error('Passwords do not match.');
+            params.passwordMismatch = "true";
+            self.signUpMismatch(req, resp, params);
+
+          } else {
+            
+            geddy.model.User.generate(params.name, params.password);
+            self.chat(req, resp, params);
+
+          }
+
+        }
+
+      }
+
+    });
+
+  };
 
   this.bundle = function (req, resp, params) {
     js({entry: path.join(__dirname,'/../../public/js/controllers/sectorMap.js'), debug: true}, function(err, src){

@@ -24,7 +24,7 @@ $("#contact").click(function () {
 })
 
 $('#chatSignUp').click(function () {
-
+	window.location.replace("/chat_sign_up");
 })
 
 $('#chatLogIn').click(function () {

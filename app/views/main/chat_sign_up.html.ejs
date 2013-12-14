@@ -1,0 +1,65 @@
+<div id="header">
+  <h2 id="headerText">MagusXIX</h2>
+</div>
+
+<div id="can">
+
+  <div id="navCan">
+
+    <div id="home" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/home.png"></img>
+      </div>
+      <p>Home</p>
+    </div>
+    <div id="projects" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/cog.png"></img>
+      </div>
+      <p>Projects</p>
+    </div>
+    <div id="playground" class="navCanButton">
+      <div class="navIconCan">
+        <img src="/img/tools.png"></img>
+      </div>
+      <p>Playground</p>
+    </div>
+
+  </div> <!-- end of navcan -->
+
+  <div id="contentCan">
+
+    <div class="wideBar"></div>
+
+    <div class="contentWide">
+      
+      <div id="signUpFormCan">
+
+        <form id="signUpForm" action="/sign_up_attempt" method="get">
+
+          <div id="signUpUserNameCan" class="formSpreader">
+            Desired Username: <input id="signUpUserNameInput" type="text" name="name"></input>
+          </div>
+          <div id="signUpDesiredPasswordCan" class="formSpreader">
+            Desired Password: <input id="signUpPasswordInput" type="password" name="password"></input>
+          </div>
+          <div id="signUpConfirmPasswordCan" class="formSpreader">
+            Confirm Password: <input id="signUpPasswordConfirm" type="password" name="passwordConfirm"></input>
+          </div>
+          <div id="signUpSubmitCan" class="formSpreader">
+            <input id="signUpSubmit" type="submit" value="Sign Up"></input>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="clear"></div>
+
+</div>
+
+<%- scriptLink('/js/controllers/main.js', {type: 'text/javascript'}) %>
