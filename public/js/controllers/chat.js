@@ -1,7 +1,12 @@
+console.log("inside chat.js");
+
 var geddy = {};
 window.geddy = geddy || {};
 geddy.io = require('socket.io-client');
 geddy.socket = geddy.io.connect('/');
+
+var userName = readCookie('userName');
+console.log(userName);
 
 $('html').css("height", "100%");
 $('html').css("width", "100%");
@@ -106,6 +111,16 @@ $('#diceFormSubmit').click(function (event) {
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
 
+    messageCount++;
+
+    if ((messageCount * 20) > $("#sentMessages").height()) {
+      $("#sentMessages").scrollTop(messageCount * 20);
+    }
+
+    if ($('#sentMessages').width() > $('#mainChatCan').width()) {
+      $('#sentMessages').width = $('#mainChatCan').width();
+    }
+
   }
 
   rollTheDice(displayResults);
@@ -120,3 +135,29 @@ geddy.socket.on('establishing', function (data) {
   console.log(data);
   geddy.socket.emit('established', {established: 'true'});
 });
+
+//COOKIE HANDLERS
+function createCookie(name,value,days) {
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime()+(days*24*60*60*1000));
+    var expires = "; expires="+date.toGMTString();
+  }
+  else var expires = "";
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+function eraseCookie(name) {
+  createCookie(name,"",-1);
+}

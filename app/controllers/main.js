@@ -54,7 +54,7 @@ var Main = function () {
     geddy.log.notice('Directing to chat.');
 
     if (params.matched == "true") {
-      this.respond({}, {
+      this.respond({params: params}, {
           format: 'html'
         , template: 'app/views/main/chat'
       })
@@ -194,10 +194,12 @@ var Main = function () {
   };
 
   this.chatBundle = function (req, resp, params) {
+    geddy.log.notice("finding chat bundle.");
     js({entry: path.join(__dirname,'/../../public/js/controllers/chat.js'), debug: true}, function (err, src) {
       if (err) {
         geddy.log.error("FRONT END ERROR!! OH NOAZ!" + err.message);
       }
+      geddy.log.notice("chat bundle found");
       resp.send(src, 200, {'Content-Type': 'text/javascript'});
     });
   };
