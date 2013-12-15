@@ -297,6 +297,18 @@ body {
   margin: auto;
   top: 40px;
   right: 40px;
+  overflow: auto;
+}
+
+#userListHeader {
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.connectedUser {
+  text-align: center;
+  border-bottom: 1px solid black;
 }
 
 #diceRollerCan {

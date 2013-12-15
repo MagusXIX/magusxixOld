@@ -6,7 +6,39 @@ geddy.io = require('socket.io-client');
 geddy.socket = geddy.io.connect('/');
 
 var userName = readCookie('userName');
-console.log(userName);
+var allUsers = [];
+geddy.socket.emit('userConnected', userName);
+geddy.socket.on('updatedUsers', function (data) {
+  $('.connectedUser').remove();
+  allUsers.length = 0;
+  for (var i in data) {
+    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
+    allUsers.push(data[i]);
+  }
+})
+geddy.socket.on('userUpdateRebound', function (data) {
+  $('.connectedUser').remove();
+  allUsers.length = 0;
+  for (var i in data) {
+    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
+    allUsers.push(data[i]);
+  }
+})
+
+geddy.socket.on('userDisconnect', function () {
+  console.log("User disconnected.");
+  geddy.socket.emit('userCheckUp', userName);
+})
+
+geddy.socket.on('userRefresh', function (data) {
+  console.log("Refreshing users.");
+  $('.connectedUser').remove();
+  allUsers.length = 0;
+  for (var i in data) {
+    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
+    allUsers.push(data[i]);
+  }
+})
 
 $('html').css("height", "100%");
 $('html').css("width", "100%");
@@ -132,7 +164,6 @@ geddy.socket.on('diceRollEmit', function (data) {
 });
 
 geddy.socket.on('establishing', function (data) {
-  console.log(data);
   geddy.socket.emit('established', {established: 'true'});
 });
 
