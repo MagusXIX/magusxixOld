@@ -228,6 +228,20 @@ body {
   cursor: pointer;
 }
 
+#incorrectSignUp {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#incorrectLogIn{
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 #mainChatCan {
   width: 70%;
   background-color: white;

@@ -12,7 +12,8 @@ geddy.socket.on('updatedUsers', function (data) {
   $('.connectedUser').remove();
   allUsers.length = 0;
   for (var i in data) {
-    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
+    var individual = data[i].replace(/<(?:.|\n)*?>/gm, '');
+    $('#userListCan').append("<div class='connectedUser'>" + individual + "</div>")
     allUsers.push(data[i]);
   }
 })
@@ -20,7 +21,8 @@ geddy.socket.on('userUpdateRebound', function (data) {
   $('.connectedUser').remove();
   allUsers.length = 0;
   for (var i in data) {
-    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
+    var individual = data[i].replace(/<(?:.|\n)*?>/gm, '');
+    $('#userListCan').append("<div class='connectedUser'>" + individual + "</div>")
     allUsers.push(data[i]);
   }
 })
@@ -35,8 +37,9 @@ geddy.socket.on('userRefresh', function (data) {
   $('.connectedUser').remove();
   allUsers.length = 0;
   for (var i in data) {
-    $('#userListCan').append("<div class='connectedUser'>" + data[i] + "</div>")
-    allUsers.push(data[i]);
+    var individual = data[i].replace(/<(?:.|\n)*?>/gm, '');
+    $('#userListCan').append("<div class='connectedUser'>" + individual + "</div>")
+    allUsers.push(individual);
   }
 })
 

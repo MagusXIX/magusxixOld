@@ -42,6 +42,22 @@ $('#signUpSubmitCan').keypress(function (event) {
 
 })
 
+$('#logInSubmitCan').click(function (event) {
+
+  var userName = $('#logInUserNameInput').val();
+  createCookie('userName', userName, 1)
+
+})
+
+$('#logInSubmitCan').click(function (event) {
+
+  if (event.which == 13) {
+    var userName = $('#logInUserNameInput').val();
+    createCookie('userName', userName, 1)
+  }
+
+})
+
 //COOKIE HANDLERS
 function createCookie(name,value,days) {
   if (days) {

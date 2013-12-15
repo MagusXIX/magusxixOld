@@ -75,7 +75,7 @@ var Main = function () {
     console.log(params);
     this.respond({params: params}, {
         format: 'html'
-      , template: 'app/views/main/chat_sign_up'
+      , template: 'app/views/main/chat_bad_sign_up'
     })
   }
 
@@ -83,7 +83,7 @@ var Main = function () {
     console.log(params);
     this.respond({params: params}, {
         format: 'html'
-      , template: 'app/views/main/chat_sign_up'
+      , template: 'app/views/main/chat_bad_sign_up'
     });
   };
 
@@ -168,7 +168,7 @@ var Main = function () {
         geddy.log.error('DB query error, no user found.')
       } else if (users.length == 0) {
         geddy.log.error("No matched user.");
-        self.chatLogIn(req, resp, params);
+        self.chatBadLogIn(req, resp, params);
       } else {
 
         if (users[0].password == params.password) {
@@ -177,11 +177,20 @@ var Main = function () {
           self.chat(req, resp, params);
         } else {
           geddy.log.notice("Password does not match username.");
-          self.chatLogIn(req, resp, params);
+          self.chatBadLogIn(req, resp, params);
         }
 
       }
 
+    })
+  }
+
+  this.chatBadLogIn = function (req, resp, params) {
+    var self = this;
+
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat_bad_log_in'
     })
   }
 
