@@ -22,13 +22,13 @@ $('#messageFormInput').keypress(function (event) {
 
   if (event.which == 13) {
 
-    var inputText = encodeURI($('#messageFormInput').val());
+    var inputText = $('#messageFormInput').val().replace(/<(?:.|\n)*?>/gm, '');
 
     event.preventDefault();
 
     geddy.socket.emit('sentMessage', inputText);
 
-    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><p class='sentMessageText'>" + inputText + "</p></div>");
+    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
     $('#messageFormInput').val('');
 
     messageCount++;
@@ -47,12 +47,12 @@ $('#messageFormInput').keypress(function (event) {
 
 $('#messageFormSubmit').click(function (event) {
 
-  var inputText = encodeURI($('#messageFormInput').val());
+  var inputText = $('#messageFormInput').val().replace(/<(?:.|\n)*?>/gm, '');
 
   event.preventDefault();
   geddy.socket.emit('sentMessage', inputText);
 
-  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + "<p class='sentMessageText'>" + inputText + "</p></div>");
+  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
   $('#messageFormInput').val('');
   $('#messageFormInput').focus();
 
@@ -106,7 +106,7 @@ $('#diceFormSubmit').click(function (event) {
   var displayResults = function (rollResults) {
 
     var resultsMessage = '';
-    resultsMessage = 'You rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
+    resultsMessage = userName + ' rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
 
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);

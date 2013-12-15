@@ -274,9 +274,18 @@ body {
   padding-left: 10px;
 }
 
+.sentMessageUserName {
+  border-right: 1px solid black;
+  width: 10%;
+  height: 100%;
+  margin-right: 10px;
+  float: left;
+}
+
 .sentMessageText {
   margin: 0px;
-  max-width: 100%;
+  width: 89%;
+  float: right;
 }
 
 #userListCan {
