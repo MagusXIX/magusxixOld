@@ -190,35 +190,31 @@ body {
   border-radius: 4px;
 }
 
-#signUpFormCan {
+.userFormCan {
 
 }
 
-#signUpUserNameCan {
+.userFormNameCan {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
 }
 
-#signUpDesiredPasswordCan {
+.userFormPasswordCan {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
 }
 
-#signUpConfirmPasswordCan {
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#signUpSubmitCan {
+.userSubmitCan {
   width: 230px;
   margin-left: auto;
   margin-right: auto;
 }
 
-#signUpSubmit {
+.userSubmit {
   width: 60px;
   height: 26px;
   background: none;

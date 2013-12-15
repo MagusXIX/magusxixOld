@@ -23,9 +23,12 @@ router.get('/').to('Main.index');
 router.get('/projects').to('Main.projects');
 router.get('/playground').to('Main.playground');
 router.get('/sectormap').to('Main.sectorMap');
+
 router.get('/chat').to('Main.chat');
 router.get('/chat_sign_up').to('Main.chatSignUp');
-router.get('/sign_up_attempt').to('Main.signUpAttempt');
+router.post('/sign_up_attempt').to('Main.signUpAttempt');
+router.get('/chat_log_in').to('Main.chatLogIn');
+router.post('/log_in_attempt').to('Main.logInAttempt');
 
 router.get('/bundle.js').to('Main.bundle');
 router.get('/chatBundle.js').to('Main.chatBundle');

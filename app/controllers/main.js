@@ -50,10 +50,18 @@ var Main = function () {
   };
 
   this.chat = function (req, resp, params) {
-    this.respond({}, {
-        format: 'html'
-      , template: 'app/views/main/chat'
-    })
+    var self = this;
+    geddy.log.notice('Directing to chat.');
+
+    if (params.matched == "true") {
+      this.respond({}, {
+          format: 'html'
+        , template: 'app/views/main/chat'
+      })
+    } else {
+      geddy.log.error("User not matched.");
+      self.chatLogIn(req, resp, params);
+    }
   }
 
   this.chatSignUp = function (req, resp, params) {
@@ -112,6 +120,7 @@ var Main = function () {
               geddy.log.notice('Sign Up Conditions Met');
 
               geddy.model.User.generate(params.name, params.password);
+              params.matched = "true";
               self.chat(req, resp, params);
             }
 
@@ -128,6 +137,7 @@ var Main = function () {
           } else {
             
             geddy.model.User.generate(params.name, params.password);
+            params.matched = "true";
             self.chat(req, resp, params);
 
           }
@@ -139,6 +149,39 @@ var Main = function () {
     });
 
   };
+
+  this.chatLogIn = function (req, resp, params) {
+    this.respond({params: params}, {
+        format: 'html'
+      , template: 'app/views/main/chat_log_in'
+    });
+  };
+
+  this.logInAttempt = function (req, resp, params) {
+    var self = this;
+
+    geddy.model.User.all({name: params.name}, function (err, users) {
+
+      if (err) {
+        geddy.log.error('DB query error, no user found.')
+      } else if (users.length == 0) {
+        geddy.log.error("No matched user.");
+        self.chatLogIn(req, resp, params);
+      } else {
+
+        if (users[0].password == params.password) {
+          geddy.log.notice("Name and password match.");
+          params.matched = "true";
+          self.chat(req, resp, params);
+        } else {
+          geddy.log.notice("Password does not match username.");
+          self.chatLogIn(req, resp, params);
+        }
+
+      }
+
+    })
+  }
 
   this.bundle = function (req, resp, params) {
     js({entry: path.join(__dirname,'/../../public/js/controllers/sectorMap.js'), debug: true}, function(err, src){

@@ -33,21 +33,18 @@
 
     <div class="contentWide">
       
-      <div class="userFormCan">
+      <div id="logInFormCan">
 
-        <form id="signUpForm" class="userForm" action="/sign_up_attempt" method="post">
+        <form id="logInForm" class="userForm" action="/log_in_attempt" method="post">
 
-          <div id="signUpUserNameCan" class="userFormNameCan">
-            Desired Username: <input id="signUpUserNameInput" type="text" name="name"></input>
+          <div id="logInUserNameCan" class="userFormNameCan">
+            Username: <input id="logInUserNameInput" type="text" name="name"></input>
           </div>
-          <div id="signUpDesiredPasswordCan" class="userFormPasswordCan">
-            Desired Password: <input id="signUpPasswordInput" type="password" name="password"></input>
+          <div id="logInPasswordCan" class="userFormPasswordCan">
+            Password: <input id="logInPasswordInput" type="password" name="password"></input>
           </div>
-          <div id="signUpConfirmPasswordCan" class="userFormPasswordCan">
-            Confirm Password: <input id="signUpPasswordConfirm" type="password" name="passwordConfirm"></input>
-          </div>
-          <div id="signUpSubmitCan" class="userSubmitCan">
-            <input id="signUpSubmit" class="userSubmit" type="submit" value="Sign Up"></input>
+          <div id="logInSubmitCan" class="userSubmitCan">
+            <input id="logInSubmit" class="userSubmit" type="submit" value="Log In"></input>
           </div>
 
         </form>
