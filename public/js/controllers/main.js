@@ -27,9 +27,18 @@ $('#chatLogIn').click(function () {
 })
 
 $('#signUpSubmitCan').click(function (event) {
-  
+
   var userName = $('#signUpUserNameInput').val();
   createCookie('userName', userName, 1)
+
+})
+
+$('#signUpSubmitCan').keypress(function (event) {
+
+  if (event.which == 13) {
+    var userName = $('#signUpUserNameInput').val();
+    createCookie('userName', userName, 1)
+  }
 
 })
 

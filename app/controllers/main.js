@@ -90,18 +90,19 @@ var Main = function () {
   this.signUpAttempt = function (req, resp, params) {
     var self = this;
     
-    geddy.model.User.all({}, function (err, users) {
+    geddy.model.User.all({name: params.userName}, function (err, users) {
 
       if (err) {
         geddy.log.error(err);
       } else if (users) {
+        console.log(users);
         
         if (users.length > 0) {
 
           for (var i in users) {
             geddy.log.notice('Browsing users');
 
-            if (users[i].name == params.name) {
+            if (users[i].name == params.userName) {
               geddy.log.error('Username is Taken');
 
               params.nameTaken = "true";
@@ -117,9 +118,9 @@ var Main = function () {
               self.signUpMismatch(req, resp, params);
 
             } else {
-              geddy.log.notice('Sign Up Conditions Met');
+              geddy.log.notice('Sign Up Conditions Met Multple Users');
 
-              geddy.model.User.generate(params.name, params.password);
+              geddy.model.User.generate(params.userName, params.password);
               params.matched = "true";
               self.chat(req, resp, params);
             }
@@ -136,7 +137,8 @@ var Main = function () {
 
           } else {
             
-            geddy.model.User.generate(params.name, params.password);
+            geddy.log.notice("Sign Up Conditions Met.  Single User");
+            geddy.model.User.generate(params.userName, params.password);
             params.matched = "true";
             self.chat(req, resp, params);
 
@@ -160,7 +162,7 @@ var Main = function () {
   this.logInAttempt = function (req, resp, params) {
     var self = this;
 
-    geddy.model.User.all({name: params.name}, function (err, users) {
+    geddy.model.User.all({name: params.userName}, function (err, users) {
 
       if (err) {
         geddy.log.error('DB query error, no user found.')

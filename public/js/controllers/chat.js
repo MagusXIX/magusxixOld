@@ -57,11 +57,11 @@ $('#messageFormInput').keypress(function (event) {
     var inputText = $('#messageFormInput').val().replace(/<(?:.|\n)*?>/gm, '');
 
     event.preventDefault();
-
     geddy.socket.emit('sentMessage', inputText);
 
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
     $('#messageFormInput').val('');
+    $('#messageFormInput').focus();
 
     messageCount++;
 
