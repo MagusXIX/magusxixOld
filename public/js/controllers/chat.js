@@ -58,9 +58,11 @@ $('#messageFormInput').keypress(function (event) {
   if (event.which == 13) {
 
     var inputText = $('#messageFormInput').val().replace(/<(?:.|\n)*?>/gm, '');
+    var sentMessage = [];
+    sentMessage.push(userName, inputText);
 
     event.preventDefault();
-    geddy.socket.emit('sentMessage', inputText);
+    geddy.socket.emit('sentMessage', sentMessage);
 
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
     $('#messageFormInput').val('');
@@ -83,9 +85,11 @@ $('#messageFormInput').keypress(function (event) {
 $('#messageFormSubmit').click(function (event) {
 
   var inputText = $('#messageFormInput').val().replace(/<(?:.|\n)*?>/gm, '');
+  var sentMessage = [];
+  sentMessage.push(userName, inputText);
 
   event.preventDefault();
-  geddy.socket.emit('sentMessage', inputText);
+  geddy.socket.emit('sentMessage', sentMessage);
 
   $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
   $('#messageFormInput').val('');
@@ -100,7 +104,7 @@ $('#messageFormSubmit').click(function (event) {
 })
 
 geddy.socket.on('receivedMessage', function (data) {
-  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + "<p class='sentMessageText'>" + data + "</p></div>");
+  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + data[0] + "</div><div class='sentMessageText'>" + data[1] + "</div><div class='clear'></div></div>");
 })
 
 
