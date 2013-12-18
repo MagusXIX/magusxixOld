@@ -70,7 +70,7 @@ $('#messageFormInput').keypress(function (event) {
 
     messageCount++;
 
-    if ((messageCount * 20) > $("#sentMessages").height()) {
+    if ((messageCount * 1000) > $("#sentMessages").height()) {
       $("#sentMessages").scrollTop(messageCount * 20);
     }
 
@@ -97,8 +97,12 @@ $('#messageFormSubmit').click(function (event) {
 
   messageCount++;
 
-  if ((messageCount * 20) > $("#sentMessages").height()) {
+  if ((messageCount * 1000) > $("#sentMessages").height()) {
     $("#sentMessages").scrollTop(messageCount * 20);
+  }
+
+  if ($('#sentMessages').width() > $('#mainChatCan').width()) {
+    $('#sentMessages').width = $('#mainChatCan').width();
   }
 
 })
@@ -108,10 +112,14 @@ geddy.socket.on('receivedMessage', function (data) {
 
   messageCount++;
 
-  if ((messageCount * 20) > $("#sentMessages").height()) {
+  if ((messageCount * 1000) > $("#sentMessages").height()) {
     $("#sentMessages").scrollTop(messageCount * 20);
   }
-  
+
+  if ($('#sentMessages').width() > $('#mainChatCan').width()) {
+    $('#sentMessages').width = $('#mainChatCan').width();
+  }
+
 })
 
 
