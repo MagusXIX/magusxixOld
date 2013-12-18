@@ -105,6 +105,13 @@ $('#messageFormSubmit').click(function (event) {
 
 geddy.socket.on('receivedMessage', function (data) {
   $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + data[0] + "</div><div class='sentMessageText'>" + data[1] + "</div><div class='clear'></div></div>");
+
+  messageCount++;
+
+  if ((messageCount * 20) > $("#sentMessages").height()) {
+    $("#sentMessages").scrollTop(messageCount * 20);
+  }
+  
 })
 
 
