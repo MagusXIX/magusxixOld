@@ -167,8 +167,8 @@ $('#diceFormSubmit').click(function (event) {
 
     messageCount++;
 
-    if ((messageCount * 20) > $("#sentMessages").height()) {
-      $("#sentMessages").scrollTop(messageCount * 20);
+    if ((messageCount * 1000) > $("#sentMessages").height()) {
+      $("#sentMessages").scrollTop(messageCount * 1000);
     }
 
     if ($('#sentMessages').width() > $('#mainChatCan').width()) {
