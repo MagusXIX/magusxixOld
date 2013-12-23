@@ -73,7 +73,7 @@ $('#messageFormInput').keypress(function (event) {
     event.preventDefault();
     geddy.socket.emit('sentMessage', sentMessage);
 
-    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
+    $('#sentMessages').append("<div class='sentMessage' style='word-wrap: break-word'><div class='sentMessageUserName'><b>" + userName + "</b></div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
     $('#messageFormInput').val('');
     $('#messageFormInput').focus();
 
@@ -96,7 +96,7 @@ $('#messageFormSubmit').click(function (event) {
   event.preventDefault();
   geddy.socket.emit('sentMessage', sentMessage);
 
-  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + userName + "</div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
+  $('#sentMessages').append("<div class='sentMessage' style='word-wrap: break-word'><div class='sentMessageUserName'><b>" + userName + "</b></div><div class='sentMessageText'>" + inputText + "</div><div class='clear'></div></div>");
   $('#messageFormInput').val('');
   $('#messageFormInput').focus();
 
@@ -109,7 +109,7 @@ $('#messageFormSubmit').click(function (event) {
 })
 
 geddy.socket.on('receivedMessage', function (data) {
-  $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + data[0] + "</div><div class='sentMessageText'>" + data[1] + "</div><div class='clear'></div></div>");
+  $('#sentMessages').append("<div class='sentMessage' style='word-wrap: break-word'><div class='sentMessageUserName'><b>" + data[0] + "</b></div><div class='sentMessageText'>" + data[1] + "</div><div class='clear'></div></div>");
 
   if ($('#sentMessages').width() > $('#mainChatCan').width()) {
     $('#sentMessages').width = $('#mainChatCan').width();
