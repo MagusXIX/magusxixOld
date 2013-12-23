@@ -288,6 +288,7 @@ body {
 .sentMessage {
   border-bottom: 1px solid black;
   padding-left: 10px;
+  position: relative;
 }
 
 .sentMessageUserName {
@@ -296,6 +297,7 @@ body {
   height: 100%;
   margin-right: 10px;
   float: left;
+  position: absolute;
 }
 
 .sentMessageText {

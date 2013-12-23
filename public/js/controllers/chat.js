@@ -101,8 +101,8 @@ $('#messageFormSubmit').click(function (event) {
   $('#messageFormInput').focus();
 
   if ($('#sentMessages').width() > $('#mainChatCan').width()) {
-      $('#sentMessages').width = $('#mainChatCan').width();
-    }
+    $('#sentMessages').width = $('#mainChatCan').width();
+  }
 
   autoScroll();
 
