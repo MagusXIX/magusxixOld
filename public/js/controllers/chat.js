@@ -53,6 +53,15 @@ $('#container').css("width", "100%");
 //MESSAGE HANDLERS
 var messageCount = 0;
 
+var autoScroll = function () {
+  messageCount++;
+
+  if ((messageCount * 1000) > $("#sentMessages").height()) {
+    $("#sentMessages").scrollTop(messageCount * 1000);
+  }
+
+}
+
 $('#messageFormInput').keypress(function (event) {
 
   if (event.which == 13) {
@@ -68,15 +77,11 @@ $('#messageFormInput').keypress(function (event) {
     $('#messageFormInput').val('');
     $('#messageFormInput').focus();
 
-    messageCount++;
-
-    if ((messageCount * 1000) > $("#sentMessages").height()) {
-      $("#sentMessages").scrollTop(messageCount * 1000);
-    }
-
     if ($('#sentMessages').width() > $('#mainChatCan').width()) {
       $('#sentMessages').width = $('#mainChatCan').width();
     }
+
+    autoScroll();
 
   }
 
@@ -95,30 +100,22 @@ $('#messageFormSubmit').click(function (event) {
   $('#messageFormInput').val('');
   $('#messageFormInput').focus();
 
-  messageCount++;
-
-  if ((messageCount * 1000) > $("#sentMessages").height()) {
-    $("#sentMessages").scrollTop(messageCount * 1000);
-  }
-
   if ($('#sentMessages').width() > $('#mainChatCan').width()) {
-    $('#sentMessages').width = $('#mainChatCan').width();
-  }
+      $('#sentMessages').width = $('#mainChatCan').width();
+    }
+
+  autoScroll();
 
 })
 
 geddy.socket.on('receivedMessage', function (data) {
   $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'><div class='sentMessageUserName'>" + data[0] + "</div><div class='sentMessageText'>" + data[1] + "</div><div class='clear'></div></div>");
 
-  messageCount++;
-
-  if ((messageCount * 1000) > $("#sentMessages").height()) {
-    $("#sentMessages").scrollTop(messageCount * 1000);
-  }
-
   if ($('#sentMessages').width() > $('#mainChatCan').width()) {
     $('#sentMessages').width = $('#mainChatCan').width();
   }
+
+  autoScroll();
 
 })
 
@@ -165,15 +162,11 @@ $('#diceFormSubmit').click(function (event) {
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
 
-    messageCount++;
-
-    if ((messageCount * 1000) > $("#sentMessages").height()) {
-      $("#sentMessages").scrollTop(messageCount * 1000);
-    }
-
     if ($('#sentMessages').width() > $('#mainChatCan').width()) {
       $('#sentMessages').width = $('#mainChatCan').width();
     }
+
+    autoScroll();
 
   }
 
