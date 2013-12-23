@@ -82,6 +82,10 @@ var autoScroll = function () {
     $("#sentMessages").scrollTop(messageCount * 1000);
   }
 
+  if ((messageCount * 1000) > $("#rolledDice").height()) {
+    $("#rolledDice").scrollTop(messageCount * 1000);
+  }
+
 }
 
 $('#messageFormInput').keypress(function (event) {
@@ -178,8 +182,10 @@ $('#diceFormSubmit').click(function (event) {
 
   var displayResults = function (rollResults) {
 
+    var action = $('#actionInput').val().replace(/<(?:.|\n)*?>/gm, '');
+
     var resultsMessage = '';
-    resultsMessage = '<b>' + userName + '</b> rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
+    resultsMessage = '<b>' + userName + '</b> rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + action + ' and the results were: ' + rollResults;
 
     $('#rolledDice').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
@@ -192,7 +198,19 @@ $('#diceFormSubmit').click(function (event) {
 
   }
 
-  rollTheDice(displayResults);
+  if ($('#diceNumber').val() == parseInt($('#diceNumber').val())) {
+    if ($('#diceSides').val() == parseInt($('#diceSides').val())) {
+      if ($('#diceNumber').val() <= 20 && ($('#diceNumber').val() >= 1)) {
+
+        rollTheDice(displayResults);
+
+      } else {
+
+        console.log('Please ensure that all inputs are filled out, and that you have used intergers where appropriate. You may roll no more than 20 dice at a time.');
+
+      }
+    }
+  }
 
 });
 

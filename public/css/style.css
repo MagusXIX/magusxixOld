@@ -282,7 +282,10 @@ body {
 }
 
 #sentMessages {
-  height: 90%;
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  bottom: 40px;
   overflow: auto;
 }
 
@@ -371,6 +374,14 @@ body {
   top: 31px;
   right: 0px;
   bottom: 0px;
+}
+
+#rolledDice {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 160px;
+  overflow: auto;
 }
 
 #diceFormCan {
