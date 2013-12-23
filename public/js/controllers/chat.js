@@ -206,10 +206,20 @@ $('#diceFormSubmit').click(function (event) {
 
       } else {
 
-        console.log('Please ensure that all inputs are filled out, and that you have used intergers where appropriate. You may roll no more than 20 dice at a time.');
+        $('#rolledDice').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>You may only roll up to 20 dice at once. No negative numbers.</div>");
 
       }
+
+    } else {
+
+      $('#rolledDice').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>The number of sides must be a valid number.</div>");
+
     }
+
+  } else {
+
+    $('#rolledDice').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>The number of dice must be a valid number.</div>");
+
   }
 
 });
