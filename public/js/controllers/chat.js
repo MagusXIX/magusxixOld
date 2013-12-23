@@ -50,6 +50,10 @@ $('body').css("width", "100%");
 $('#container').css("height", "100%");
 $('#container').css("width", "100%");
 
+$("#headerText").click(function () {
+  window.open("/");
+})
+
 //MESSAGE HANDLERS
 var messageCount = 0;
 

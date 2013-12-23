@@ -43,10 +43,11 @@ body {
 }
 
 #headerText {
+  width: 198px;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
   color: #CCCCCC;
-  margin: 0px;
+  margin: 0px auto 0px auto;
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
@@ -243,13 +244,13 @@ body {
 }
 
 #mainChatCan {
-  width: 70%;
+  width: 74%;
   background-color: white;
   margin: auto;
   position: absolute;
-  top: 40px;
-  left: 40px;
-  bottom: 40px;
+  top: 60px;
+  left: 20px;
+  bottom: 20px;
 }
 
 #messageFormCan {
@@ -313,8 +314,8 @@ body {
   background-color: white;
   position: absolute;
   margin: auto;
-  top: 40px;
-  right: 40px;
+  top: 60px;
+  right: 20px;
   overflow: auto;
 }
 
@@ -334,8 +335,8 @@ body {
   background-color: white;
   position: absolute;
   margin: auto;
-  bottom: 40px;
-  right: 40px;
+  bottom: 20px;
+  right: 20px;
 }
 
 #diceFormCan {
