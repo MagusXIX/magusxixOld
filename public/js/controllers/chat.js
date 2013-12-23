@@ -157,7 +157,7 @@ $('#diceFormSubmit').click(function (event) {
   var displayResults = function (rollResults) {
 
     var resultsMessage = '';
-    resultsMessage = userName + ' rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
+    resultsMessage = '<b>' + userName + '</b> rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
 
     $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
