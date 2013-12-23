@@ -54,6 +54,24 @@ $("#headerText").click(function () {
   window.open("/");
 })
 
+//UTILITY CAN MANAGERS
+
+$('#diceRollerCan').hide();
+
+$('#userNavButton').click(function () {
+  $('#userNavButton').removeClass("utilityNavButtonBorder");
+  $('#diceNavButton').addClass("utilityNavButtonBorder");
+  $('#userListCan').show();
+  $('#diceRollerCan').hide();
+})
+
+$('#diceNavButton').click(function () {
+  $('#userNavButton').addClass("utilityNavButtonBorder");
+  $('#diceNavButton').removeClass("utilityNavButtonBorder");
+  $('#userListCan').hide();
+  $('#diceRollerCan').show();
+})
+
 //MESSAGE HANDLERS
 var messageCount = 0;
 
@@ -163,11 +181,11 @@ $('#diceFormSubmit').click(function (event) {
     var resultsMessage = '';
     resultsMessage = '<b>' + userName + '</b> rolled ' + (rollResults.length) + ', ' + $('#diceSides').val() + ' sided dice to ' + $('#actionInput').val() + ' and the results were: ' + rollResults;
 
-    $('#sentMessages').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
+    $('#rolledDice').append("<div class='sentMessage' style='margin-bottom: 1px; word-wrap: break-word'>" + resultsMessage + "</div>");
     geddy.socket.emit('diceRoll', resultsMessage);
 
-    if ($('#sentMessages').width() > $('#mainChatCan').width()) {
-      $('#sentMessages').width = $('#mainChatCan').width();
+    if ($('#rolledDice').width() > $('#diceRollerCan').width()) {
+      $('#rolledDice').width = $('#diceRollerCan').width();
     }
 
     autoScroll();
@@ -179,7 +197,7 @@ $('#diceFormSubmit').click(function (event) {
 });
 
 geddy.socket.on('diceRollEmit', function (data) {
-  $('#sentMessages').append("<div class='sentMessage'>" + data + "</div>");
+  $('#rolledDice').append("<div class='sentMessage'>" + data + "</div>");
 });
 
 geddy.socket.on('establishing', function (data) {

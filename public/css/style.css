@@ -307,22 +307,55 @@ body {
   float: right;
 }
 
-#userListCan {
+#utilityCan {
   width: 22%;
-  min-height: 300px;
-  height: 60%;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
   position: absolute;
   margin: auto;
   top: 60px;
   right: 20px;
-  overflow: auto;
+  bottom: 20px;
 }
 
-#userListHeader {
-  text-align: center;
-  font-weight: bold;
+#utilityNavCan {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+#utilityNavCanFiller {
+  width: 76%;
+  height: 21px;
+  background: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid black;
+  float: right;
+}
+
+#userNavButton {
+  width: 12%;
+  background: rgba(255, 255, 255, 1);
+  float: left;
+  border-right: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+#diceNavButton {
+  width: 12%;
+  background: rgba(255, 255, 255, 1);
+  float: left;
+  border-right: 1px solid black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.utilityNavButtonBorder {
+  border-bottom: 1px solid black;
+}
+
+#userListCan {
+  width: 100%;
+  background-color: white;
+  overflow: auto;
 }
 
 .connectedUser {
@@ -331,16 +364,20 @@ body {
 }
 
 #diceRollerCan {
-  width: 22%;
+  width: 100%;
   background-color: white;
+  overflow: auto;
   position: absolute;
-  margin: auto;
-  bottom: 20px;
-  right: 20px;
+  top: 31px;
+  right: 0px;
+  bottom: 0px;
 }
 
 #diceFormCan {
+  width: 100%;
   padding: 10px;
+  position: absolute;
+  bottom: 0px;
 }
 
 #diceFormCan input {
