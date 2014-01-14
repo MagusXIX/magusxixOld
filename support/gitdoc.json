@@ -1,5 +1,9 @@
 {
-  "googleGroup": "group_name",
-  "irc": {"server": "irc.freenode.net", "channel": "#a_channel"},
+  "googleGroup": "herpaderp",
+  "analytics": "lafkgjlaf",
+  "irc": {
+    "server": "lafgtest",
+    "channel": "<h1>3</h1>"
+  },
   "domain": "yoursite.com"
 }
